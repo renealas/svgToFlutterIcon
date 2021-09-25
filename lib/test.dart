@@ -16,10 +16,94 @@ class _Painter extends CustomPainter {
   final Color color;
 
   _Painter(this.color);
-
+  int _xScaling = 1;
+  int _yScaling = 1;
   @override
   void paint(Canvas canvas, Size size) {
+    Path path = Path();
+    path.moveTo(68.080886 * _xScaling, 3.1544674 * _yScaling);
+    path.cubicTo(
+      41.098858813255525 * _xScaling,
+      3.158352886575416 * _yScaling,
+      19.18896637647596 * _xScaling,
+      24.37954412583933 * _yScaling,
+      19.05039725731902 * _xScaling,
+      50.64376134871445 * _yScaling,
+    );
+    path.lineTo(18.963788 * _xScaling, 50.643761 * _yScaling);
+    path.cubicTo(
+      18.998238 * _xScaling,
+      51.144729 * _yScaling,
+      19.040068 * _xScaling,
+      51.647853999999995 * _yScaling,
+      19.088299 * _xScaling,
+      52.15188 * _yScaling,
+    );
+    path.cubicTo(
+      19.291934251936603 * _xScaling,
+      59.55114314611118 * _yScaling,
+      21.260523193515994 * _xScaling,
+      66.80293130622412 * _yScaling,
+      24.83851803166875 * _xScaling,
+      73.3342485049529 * _yScaling,
+    );
+    path.cubicTo(
+      37.823795 * _xScaling,
+      104.24602 * _yScaling,
+      67.475358 * _xScaling,
+      133.84477 * _yScaling,
+      67.475358 * _xScaling,
+      133.84477 * _yScaling,
+    );
+    path.cubicTo(
+      67.475358 * _xScaling,
+      133.84477 * _yScaling,
+      101.81682 * _xScaling,
+      102.09016000000001 * _yScaling,
+      113.39295 * _xScaling,
+      69.07438300000001 * _yScaling,
+    );
+    path.cubicTo(
+      115.75140565375976 * _xScaling,
+      63.50869931239183 * _yScaling,
+      117.00692985963752 * _xScaling,
+      57.55895428759475 * _yScaling,
+      117.09329543511022 * _xScaling,
+      51.53896835487854 * _yScaling,
+    );
+    path.cubicTo(
+      117.0953 * _xScaling,
+      51.50254800000001 * _yScaling,
+      117.0963 * _xScaling,
+      51.46608800000001 * _yScaling,
+      117.0983 * _xScaling,
+      51.42961500000001 * _yScaling,
+    );
+    path.cubicTo(
+      117.1278 * _xScaling,
+      50.85875100000001 * _yScaling,
+      117.1426 * _xScaling,
+      50.28871000000001 * _yScaling,
+      117.1514 * _xScaling,
+      49.72057800000001 * _yScaling,
+    );
+    path.lineTo(117.1009 * _xScaling, 49.72057800000001 * _yScaling);
+    path.cubicTo(
+      116.44948872865598 * _xScaling,
+      23.821704252326086 * _yScaling,
+      94.69470623846789 * _xScaling,
+      3.1561615445024573 * _yScaling,
+      68.08038734588163 * _xScaling,
+      3.154477121720582 * _yScaling,
+    );
+    path.close();
+
     canvas.drawPath(
+      path,
+      Paint()..color = color,
+    );
+
+    /*canvas.drawPath(
       Path()
         ..moveTo(22.1595, 3.80852)
         ..cubicTo(19.6789, 1.35254, 16.3807, -4.809659999999999e-7, 12.8727,
@@ -49,6 +133,7 @@ class _Painter extends CustomPainter {
         ..close(),
       Paint()..color = color,
     );
+    */
   }
 
   @override
