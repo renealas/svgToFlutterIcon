@@ -28,7 +28,7 @@ class SvgToData {
 
   List<String> getPaths() {
     List<String> paths = [];
-    RegExp regExp = new RegExp(r'path d="([0-9A-Z \.]+)"');
+    RegExp regExp = new RegExp(r'path d="([0-9A-Z \.\-]+)"');
     Iterable<Match> matches = regExp.allMatches(svg);
     matches.forEach((match) {
       paths.add(match.group(1));

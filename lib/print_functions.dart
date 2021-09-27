@@ -15,7 +15,7 @@ printHeaders(SvgToData svg) {
   //Widget Class//
   String widgetClass = "";
   widgetClass += "class $className extends StatelessWidget {\n";
-  widgetClass += "double size;\n";
+  widgetClass += "final double size;\n";
   widgetClass += "$className({this.size = 50});\n";
 
   widgetClass += "@override\n";
@@ -37,17 +37,20 @@ printHeaders(SvgToData svg) {
   customPainter += "class _$className extends CustomPainter {\n";
   customPainter += "@override\n";
   customPainter += "void paint(Canvas canvas, Size size) {\n";
-  customPainter += "final double originalWidth = ${size.width};\n";
-  customPainter += "final double originalHeight = ${size.height};\n";
-  customPainter += "final double _xScaling = size.width / originalWidth;\n";
+  customPainter +=
+      "final Size originalSize = Size(${size.width}, ${size.height});\n";
+  customPainter +=
+      "final double _xScaling = size.width / originalSize.width;\n";
 
   //Setting the gradient
   customPainter += "Paint paint = Paint();\n";
-  customPainter += "paint.shader = StampUI.gradients.fuji2.createShader(\n";
+  customPainter +=
+      "paint.shader = StampUI.gradients.fujiTopLeft.createShader(\n";
   customPainter += "Rect.fromCenter(\n";
-  customPainter += "center: Offset(size.width / 2, size.height / 2),\n";
-  customPainter += "width: size.width,\n";
-  customPainter += "height: size.height,\n";
+  customPainter +=
+      "center: Offset(originalSize.width / 2, originalSize.height / 2),\n";
+  customPainter += "width: originalSize.width ,\n";
+  customPainter += "height: originalSize.height,\n";
   customPainter += "),\n";
   customPainter += ");\n";
 
