@@ -10,23 +10,30 @@ printHeaders(SvgToData svg) {
   String imports = "";
   imports += "import 'package:flutter/material.dart';\n";
   imports += "import 'package:flutter/widgets.dart';\n";
-  imports += "import 'package:stamp_app/config/stamp_ui.dart';\n\n";
+  imports += "import 'package:property1/widgets/icons/icon_mixin.dart';\n\n";
 
   //Widget Class//
   String widgetClass = "";
-  widgetClass += "class $className extends StatelessWidget {\n";
-  widgetClass += "final double size;\n";
-  widgetClass += "$className({this.size = 50});\n";
+  widgetClass += "class $className extends StatelessWidget  with IconMixin {\n";
+  widgetClass += "final double width;\n";
+  widgetClass += "final double height;\n";
+  widgetClass += "final Color color;\n";
+  widgetClass += "final bool solid;\n";
+  widgetClass +=
+      "$className({this.width, this.height, this.color = const Color(0xFF00a669), this.solid = false});\n";
 
   widgetClass += "@override\n";
   widgetClass += "Widget build(BuildContext context) {\n";
   widgetClass += "return Container(\n";
-  widgetClass += "width: size,\n";
-  widgetClass += "height: size,\n";
+  widgetClass +=
+      "width: getWidth(height: height, width: width, originalSize: Size(${size.width}, ${size.height})),\n";
+  widgetClass +=
+      "height: getHeight(width: width, height: height, originalSize: Size(${size.width}, ${size.height})),\n";
   widgetClass += "alignment: Alignment.center,\n";
   widgetClass += "child: CustomPaint(\n";
-  widgetClass += "painter: _$className(),\n";
-  widgetClass += "size: Size(size,size),\n";
+  widgetClass += "painter: _$className(color: color, solid: solid),\n";
+  widgetClass +=
+      "size: getImageSize(width: width, height: height, originalSize: Size(${size.width}, ${size.height})),\n";
   widgetClass += "),\n";
   widgetClass += ");\n";
   widgetClass += "}\n";
@@ -35,6 +42,10 @@ printHeaders(SvgToData svg) {
   //Init class Custom Painter
   String customPainter = "";
   customPainter += "class _$className extends CustomPainter {\n";
+  customPainter += "final Color color;\n";
+  customPainter += "final bool solid;\n";
+  customPainter +=
+      "_$className({@required this.color, this.solid = false});\n\n";
   customPainter += "@override\n";
   customPainter += "void paint(Canvas canvas, Size size) {\n";
   customPainter +=
@@ -44,15 +55,7 @@ printHeaders(SvgToData svg) {
 
   //Setting the gradient
   customPainter += "Paint paint = Paint();\n";
-  customPainter +=
-      "paint.shader = StampUI.gradients.fujiTopLeft.createShader(\n";
-  customPainter += "Rect.fromCenter(\n";
-  customPainter +=
-      "center: Offset(originalSize.width / 2, originalSize.height / 2),\n";
-  customPainter += "width: originalSize.width ,\n";
-  customPainter += "height: originalSize.height,\n";
-  customPainter += "),\n";
-  customPainter += ");\n";
+  customPainter += "paint.color = color;\n";
 
   debugPrint(imports + widgetClass + customPainter, wrapWidth: 1024);
 }
